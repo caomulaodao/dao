@@ -16,6 +16,11 @@ Open configuration file :
 	$ vi config/main.js
 
 Change `port`   `database ` to your configs:
+
+### Run
+	npm install
+
+	node bin/server.js
 	
 
 ## Authors
