@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>云安全管理平台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">云安全管理平台</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">主页</a></li>
+                <li class="active"><a href="/new/">新建项目</a></li>
+                <li><a href="/list/">项目列表</a></li>
+                <li><a href="/info/">容器信息</a></li>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container" id="new">
+        <form action="/new/add/" method="post">
+            <div class="form-group" >
+                <label for="name">项目名称</label>
+                <input type="text" class="form-control" id="name"  placeholder="项目名称" name="name">
+            </div>
+            <div class="form-group">
+                <label for="type">项目类型</label>
+                <select class="form-control" id="type"  name="type">
+                    <option data-typeid="0">请选择项目类型</option>
+                    <option data-typeid="1">aes-128-cbc对称加密解密</option>
+                    <option data-typeid="2">RSA非对称加密解密</option>
+                    <option data-typeid="3">ShadowSocks</option>
+                </select>
+            </div>
+            <div id="config-wrapper">
+
+            </div>
+            <div class="form-group">
+                <label for="introduce">项目描述</label>
+                <textarea class="form-control" rows="5" id="introduce" name="introduce"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">创建</button>
+        </form>
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+    $("#type").change(function(){
+        var typeid = $(this).find("option:selected").data("typeid");
+        if(typeid == 1 || typeid == 2){
+            $("#config-wrapper").html('<div class="form-group">'+
+                    '<label for="introduce">端口</label>'+
+            '<input type="text" class="form-control" id="name"  placeholder="服务器端口" name="port">'+
+            '</div>');
+        }else if(typeid == 3){
+            $("#config-wrapper").html('<div class="form-group">'+
+                    '<label for="introduce">端口</label>'+
+                    '<input type="text" class="form-control" id="port"  placeholder="服务器端口" name="port">'+
+                    '</div>'+
+                    '<div class="form-group">'+
+                    '<label for="introduce">密码</label>'+
+                    '<input type="text" class="form-control" id="password"  placeholder="用户密码" name="password">'+
+                    '</div>'
+            );
+        }
+    });
+})
+</script>
+</body>
+</html>

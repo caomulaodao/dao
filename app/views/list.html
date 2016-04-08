@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>云安全管理平台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">云安全管理平台</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">主页</a></li>
+                <li><a href="/new/">新建项目</a></li>
+                <li class="active"><a href="/list/">项目列表</a></li>
+                <li><a href="/info/">容器信息</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container" id="list">
+        <h3>aes-128-cbc对称加密解密</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>简介</th>
+                <th style="width:400px;">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for aesIterm in aesList %}
+            <tr>
+                <th scope="row">{{ aesIterm.id }}</th>
+                <td>{{ aesIterm.name }}</td>
+                <td>{{ aesIterm.introduce }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary">启动</button>
+                    <button type="button" class="btn btn-primary">关闭</button>
+                    <button type="button" class="btn btn-info">配置</button>
+                    <a type="button" class="btn btn-info" href="/content/?id={{ aesIterm.id }}">使用</a>
+                    <a type="button" class="btn btn-danger" href="/delete/?id={{ aesIterm.id }}">删除</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h3>RSA非对称加密解密</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>简介</th>
+                <th style="width:400px;">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rsaIterm in rsaList %}
+            <tr>
+                <th scope="row">{{ rsaIterm.id }}</th>
+                <td>{{ rsaIterm.name }}</td>
+                <td>{{ rsaIterm.introduce }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary">启动</button>
+                    <button type="button" class="btn btn-primary">关闭</button>
+                    <button type="button" class="btn btn-info">配置</button>
+                    <a type="button" class="btn btn-info" href="/content/?id={{ rsaIterm.id }}">使用</a>
+                    <a type="button" class="btn btn-danger" href="/delete/?id={{rsaIterm.id}}">删除</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h3>ShadowSocks服务</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>简介</th>
+                <th style="width:400px;">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ssIterm in ssList %}
+            <tr>
+                <th scope="row">{{ ssIterm.id }}</th>
+                <td>{{ ssIterm.name }}</td>
+                <td>{{ ssIterm.introduce }}</td>
+                <td>
+                    <a type="button" class="btn btn-primary" href="/dockerstart/?id={{ ssIterm.id }}">启动</a>
+                    <a type="button" class="btn btn-primary" href="/dockerstop/?id={{ ssIterm.id }}">关闭</a>
+                    <button type="button" class="btn btn-info">配置</button>
+                    <a type="button" class="btn btn-info" href="/content/?id={{ ssIterm.id }}">使用</a>
+                    <a type="button" class="btn btn-danger" href="/delete/?id={{ ssIterm.id }}">删除</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
