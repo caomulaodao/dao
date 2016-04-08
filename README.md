@@ -1,6 +1,5 @@
-# koa-grace
-
-Dao is a new generation Nodejs  MVC framework, which build with KOA / Mongoose etc.
+# Dao
+ Dao is a new generation Nodejs  MVC framework, which build with KOA / Mongoose etc.
 
 ## Getting started
 
